@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
+models/
+output/
+eval_results/
+data/private/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.log

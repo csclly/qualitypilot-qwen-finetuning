@@ -1,0 +1,1 @@
+{"messages":[{"role":"user","content":"合成验证格式示例，证据1：图像记录和人工复核记录应关联同一件样品。请返回五字段JSON建议。"},{"role":"assistant","content":"{\"summary\":\"需核实证据对应的样品。\",\"suggested_actions\":[\"核对两份记录的样品编号。\"],\"risk_notes\":[\"样品对应关系尚未确认。\"],\"citations\":[1],\"business_references\":[]}"}]}

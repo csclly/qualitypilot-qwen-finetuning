@@ -1,0 +1,11 @@
+torch==2.6.0
+transformers==5.16.1
+peft==0.20.0
+datasets==5.0.1
+accelerate==1.14.0
+bitsandbytes==0.50.2
+fastapi==0.141.1
+uvicorn==0.52.4
+pydantic==2.13.5
+safetensors==0.8.0
+tokenizers==0.23.1

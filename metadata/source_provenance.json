@@ -1,0 +1,32 @@
+[
+  {
+    "file": "train.py",
+    "original_sha256": "f6789929808e2349fe70a9cb1a3a801d5e6c2c4f18874617d0e3fa7cdca64025",
+    "source": "user-provided cloud script",
+    "changes": "environment-based paths; train output protection and opt-in sample logging; comparison output protection where applicable"
+  },
+  {
+    "file": "inference.py",
+    "original_sha256": "4d225456fc16ee9c23e85047662627b692ac1c698f191c0d81af4912212f4c41",
+    "source": "user-provided cloud script",
+    "changes": "environment-based paths; train output protection and opt-in sample logging; comparison output protection where applicable"
+  },
+  {
+    "file": "compare_eval.py",
+    "original_sha256": "000c0fb88e96b5c78199dc526289ed49fed03d1a9221c2315307774930c5c5b4",
+    "source": "user-provided cloud script",
+    "changes": "environment-based paths; train output protection and opt-in sample logging; comparison output protection where applicable"
+  },
+  {
+    "file": "test_load.py",
+    "original_sha256": "017395b2794bed0027117db6adcac2c65feb1e2be565032dcbc9b082dd802ab4",
+    "source": "user-provided cloud script",
+    "changes": "environment-based paths; train output protection and opt-in sample logging; comparison output protection where applicable"
+  },
+  {
+    "file": "test_lora.py",
+    "original_sha256": "d3e6dde3e524aca664deaf6e8537189bfe0038fe1c08d92c6e6031ce3ba47068",
+    "source": "user-provided cloud script",
+    "changes": "environment-based paths; train output protection and opt-in sample logging; comparison output protection where applicable"
+  }
+]

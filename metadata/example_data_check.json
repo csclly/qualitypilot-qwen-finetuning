@@ -1,0 +1,19 @@
+{
+  "train": {
+    "file_sha256": "f9efd1cf38bcc9501fe8324ca767c2b33dbf8a492febb67011cc9cb0942a5973",
+    "nonempty_rows": 2,
+    "valid_rows": 2,
+    "invalid_lines": [],
+    "duplicate_examples": 0
+  },
+  "validation": {
+    "file_sha256": "87ec71ebaf815b12a5a8d73f08bb63f69f2501e22712aaa09ba2bdd50581f21d",
+    "nonempty_rows": 1,
+    "valid_rows": 1,
+    "invalid_lines": [],
+    "duplicate_examples": 0
+  },
+  "shared_prompt_hashes": 0,
+  "shared_example_hashes": 0,
+  "scope": "Exact normalized messages only; semantic duplication and token truncation not checked. No source text exported."
+}

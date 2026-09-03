@@ -1,0 +1,2 @@
+{"messages":[{"role":"user","content":"合成训练格式示例，证据1：应保留AOI程序版本并先复核原图。请以五字段JSON提出待审批建议。"},{"role":"assistant","content":"{\"summary\":\"需先确认报点真实性。\",\"suggested_actions\":[\"保留程序版本并复核原图。\"],\"risk_notes\":[\"当前缺少现场复核结论。\"],\"citations\":[1],\"business_references\":[]}"}]}
+{"messages":[{"role":"user","content":"合成训练格式示例，证据1：工艺调整须经工程评审和样板验证。尚无评审结果，应怎么做？请返回五字段JSON。"},{"role":"assistant","content":"{\"summary\":\"尚不能执行工艺调整。\",\"suggested_actions\":[\"提交工程评审并安排样板验证。\"],\"risk_notes\":[\"没有评审通过的证据。\"],\"citations\":[1],\"business_references\":[]}"}]}
