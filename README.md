@@ -12,12 +12,13 @@ PCB / AOI 场景的 Qwen2.5-7B-Instruct QLoRA 训练与对比推理项目，来�
 | inference.py | 单个问题分别运行基础模型和 LoRA |
 | compare_eval.py | 10 题基础模型/LoRA 原文对比，记录生成速度与关键词覆盖 |
 | test_load.py / test_lora.py | GPU 环境手动加载检查；不会被 pytest 默认收集 |
+| model_server.py | 已有模型的 FastAPI 非流式聊天服务与健康检查 |
 | inspect_dataset.py | 检查 messages JSONL 格式、精确重复与跨集合相同提示，不导出文本 |
 | metadata/ | 实际环境版本、原始脚本摘要、适配器配置和训练状态 |
 | tests/ | 无需 GPU 的预处理与数据检查测试 |
 | docs/ | 训练记录说明、应用侧评测边界 |
 
-FastAPI 服务源码的收录状态见 docs/REPRODUCIBILITY.md。原训练数据的生成、清洗、划分脚本尚未收到，不能宣称完整数据流水线已经复现。
+FastAPI 服务源码已收录，启动方法见下文。原训练数据的生成、清洗、划分脚本尚未收到，不能宣称完整数据流水线已经复现。
 
 ## 已核实的实验配置与结果
 
@@ -86,6 +87,28 @@ python compare_eval.py
 ```
 
 compare_eval.py 先对全部题运行基础模型，再在同一基础模型加载 LoRA。原文与统计保存到新目录中的 base_vs_lora.jsonl。已有文件会被拒绝覆盖。它是自由回答关键词覆盖实验，不测 QualityPilot 五字段 JSON，也不自动判断事实忠实度。当前未收到原 base_vs_lora 结果，不能编造微调提升。
+
+## 启动模型服务
+
+使用已有基础模型和 adapter，在云端 qwen-sft 环境、仓库根目录执行：
+
+```bash
+export PCB_BASE_MODEL_PATH=/root/autodl-tmp/models/Qwen2.5-7B-Instruct
+export PCB_LORA_PATH=/root/autodl-tmp/pcb-qwen-sft/output/pcb-lora-5000-assistant-only
+read -r -s -p "Model API key: " PCB_LLM_API_KEY
+export PCB_LLM_API_KEY
+python -m uvicorn model_server:app --host 127.0.0.1 --port 8001 --workers 1
+```
+
+密钥必须与 QualityPilot 后端 GENERATION_API_KEY 一致。服务拒绝空密钥；不要将真实密钥写入示例文件或提交 Git。单 GPU 使用单 worker，避免重复加载模型。直接执行 python model_server.py 只会加载模型并退出，不会启动 HTTP 服务；等待 Uvicorn 显示启动完成后，在另一个云端终端检查：
+
+```bash
+curl --fail http://127.0.0.1:8001/health
+```
+
+本地通过 SSH 将 18001 转发到云端 8001，QualityPilot 设置 GENERATION_PROVIDER=openai_compatible，并使用 GENERATION_BASE_URL=http://127.0.0.1:18001/v1、GENERATION_MODEL=pcb-qwen-lora。现有端口转发可继续使用。接口包括 /health、/v1/models、/v1/chat/completions；聊天与模型列表需要 Bearer 认证。仅支持非流式文本聊天，尚无服务端 JSON 约束解码或工具执行。
+
+此代码保留原服务的系统提示与推理逻辑。当前 model 字段不校验别名，finish_reason 固定为 stop，尚未实现输入长度限制、负载限流和准确的截断标记；不应把它描述为完整兼容所有 OpenAI 接口。整理后的路径和认证变更仅经过本地无 GPU 检查，未覆盖当前云端文件或重新部署。
 
 ## 测试与数据样例
 

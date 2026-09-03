@@ -28,5 +28,11 @@
     "original_sha256": "d3e6dde3e524aca664deaf6e8537189bfe0038fe1c08d92c6e6031ce3ba47068",
     "source": "user-provided cloud script",
     "changes": "environment-based paths; train output protection and opt-in sample logging; comparison output protection where applicable"
+  },
+  {
+    "file": "model_server.py",
+    "original_sha256": "2148c68fdddea60a321e7d05b33d3888d87d00afe2e5f77f73089e958896e883",
+    "source": "user-provided cloud script",
+    "changes": "environment-based model and adapter paths; remove default API key; reject missing key before GPU loading and fail closed in authentication; original generation logic retained"
   }
 ]
